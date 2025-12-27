@@ -1,7 +1,9 @@
 "use client";
 
 import Navbar from "@/components/navbar";
+import Footer from "@/components/footer";
 import { useState, useEffect } from "react";
+import Image from "next/image";
 
 export default function Home() {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -20,16 +22,15 @@ export default function Home() {
     { name: "프레젠테이션", description: "작품을 돋보이게 하는 프레젠테이션 모드를 활용하세요." },
   ];
 
-  // 작품 카드 데이터 (8개)
+  // 작품 카드 데이터 (7개)
   const artworks = [
-    { id: 1, title: "Urban Typography", color: "bg-yellow-300", text: "OH WOW!", textColor: "text-black" },
-    { id: 2, title: "Vintage Tree", color: "bg-gray-200", image: "🌳" },
-    { id: 3, title: "Collectiv", color: "bg-black", text: "collectiv", textColor: "text-white" },
-    { id: 4, title: "Abstract Pattern", color: "bg-gray-300", pattern: true },
-    { id: 5, title: "Light Garden", color: "bg-blue-500", text: "Light Garden", textColor: "text-white" },
-    { id: 6, title: "Nature Study", color: "bg-purple-900", image: "🍃" },
-    { id: 7, title: "Portrait", color: "bg-orange-400", image: "👤" },
-    { id: 8, title: "Commercial", color: "bg-purple-300", text: "Commer", textColor: "text-black" },
+    { id: 1, title: "Artwork 1", imageUrl: "/artworks/picture.jpg" },
+    { id: 2, title: "Artwork 2", imageUrl: "/artworks/picture2.jpg" },
+    { id: 3, title: "Artwork 3", imageUrl: "/artworks/picture3.jpg" },
+    { id: 4, title: "Artwork 4", imageUrl: "/artworks/picture4.jpg" },
+    { id: 5, title: "Artwork 5", imageUrl: "/artworks/picture5.jpg" },
+    { id: 6, title: "Artwork 6", imageUrl: "/artworks/picture6.jpg" },
+    { id: 7, title: "Artwork 7", imageUrl: "/artworks/picture7.jpg" },
   ];
 
   // 2초마다 자동 슬라이드
@@ -102,18 +103,14 @@ export default function Home() {
                   zIndex: style.zIndex,
                 }}
               >
-                <div
-                  className={`${card.color} rounded-2xl w-[450px] h-[550px] flex items-center justify-center text-center p-8 shadow-2xl`}
-                >
-                  {card.text && (
-                    <span className={`text-6xl font-bold ${card.textColor}`}>
-                      {card.text}
-                    </span>
-                  )}
-                  {card.image && <span className="text-9xl">{card.image}</span>}
-                  {card.pattern && (
-                    <div className="w-full h-full bg-gradient-to-br from-gray-300 to-gray-400 rounded-2xl"></div>
-                  )}
+                <div className="relative rounded-2xl w-[450px] h-[550px] overflow-hidden shadow-2xl">
+                  <Image
+                    src={card.imageUrl}
+                    alt={card.title}
+                    fill
+                    className="object-cover"
+                    priority
+                  />
                 </div>
               </div>
             );
@@ -442,6 +439,9 @@ export default function Home() {
           </div>
         </div>
       </div>
+
+      {/* Footer */}
+      <Footer />
     </div>
   );
 }
