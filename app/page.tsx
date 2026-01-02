@@ -88,9 +88,9 @@ export default function Home() {
       <Navbar />
       
       {/* Main Carousel Section - First Screen */}
-      <main className="relative h-screen flex flex-col items-center justify-center overflow-hidden pt-16">
+      <main className="relative h-screen flex flex-col items-center justify-center overflow-hidden pt-32">
         {/* 3D Carousel Container */}
-        <div className="relative w-full h-[550px] flex items-center justify-center mb-4">
+        <div className="relative w-full h-[550px] flex items-center justify-center mb-4 mt-8">
           {artworks.map((card, index) => {
             const style = getCardStyle(index);
             return (
@@ -157,8 +157,8 @@ export default function Home() {
         </div>
 
         {/* Description Text */}
-        <div className="max-w-3xl text-center px-4 mt-8 mb-20">
-          <p className="text-xl md:text-2xl text-foreground/80 leading-relaxed">
+        <div className="max-w-3xl text-center px-4 mt-20 mb-16">
+          <p className="text-lg md:text-xl text-foreground/80 leading-relaxed">
             <span className="font-semibold">Artify</span>로 당신의 예술을 가장 아름답게 기록하세요.<br />
             작품에만 집중할 수 있도록, 복잡한 웹 구축은 <span className="font-semibold">Artify</span>가 대신합니다.
           </p>
@@ -233,32 +233,45 @@ export default function Home() {
 
           {/* Video Container */}
           <div className="relative w-full bg-gradient-to-br from-gray-200 to-gray-300 rounded-3xl shadow-2xl overflow-hidden mb-6" style={{ aspectRatio: '16/9' }}>
-            {/* Video Placeholder */}
-            <div className="absolute inset-0 flex items-center justify-center">
-              <div className="text-center">
-                <svg 
-                  className="w-24 h-24 mx-auto mb-4 text-gray-400" 
-                  fill="none" 
-                  stroke="currentColor" 
-                  viewBox="0 0 24 24"
-                >
-                  <path 
-                    strokeLinecap="round" 
-                    strokeLinejoin="round" 
-                    strokeWidth={1.5} 
-                    d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z" 
-                  />
-                  <path 
-                    strokeLinecap="round" 
-                    strokeLinejoin="round" 
-                    strokeWidth={1.5} 
-                    d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z" 
-                  />
-                </svg>
-                <p className="text-xl font-medium text-gray-500">{activeCategory} 시연 영상</p>
-                <p className="text-sm text-gray-400 mt-2">동영상이 여기에 표시됩니다</p>
+            {activeCategory === "프롬프트" ? (
+              <video 
+                className="w-full h-full object-cover"
+                controls
+                autoPlay
+                loop
+                muted
+              >
+                <source src="/artworks/artify_video.mp4" type="video/mp4" />
+                Your browser does not support the video tag.
+              </video>
+            ) : (
+              /* Video Placeholder for other categories */
+              <div className="absolute inset-0 flex items-center justify-center">
+                <div className="text-center">
+                  <svg 
+                    className="w-24 h-24 mx-auto mb-4 text-gray-400" 
+                    fill="none" 
+                    stroke="currentColor" 
+                    viewBox="0 0 24 24"
+                  >
+                    <path 
+                      strokeLinecap="round" 
+                      strokeLinejoin="round" 
+                      strokeWidth={1.5} 
+                      d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z" 
+                    />
+                    <path 
+                      strokeLinecap="round" 
+                      strokeLinejoin="round" 
+                      strokeWidth={1.5} 
+                      d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z" 
+                    />
+                  </svg>
+                  <p className="text-xl font-medium text-gray-500">{activeCategory} 시연 영상</p>
+                  <p className="text-sm text-gray-400 mt-2">동영상이 여기에 표시됩니다</p>
+                </div>
               </div>
-            </div>
+            )}
           </div>
 
           {/* Category Description */}
